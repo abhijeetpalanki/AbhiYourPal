@@ -8,7 +8,6 @@ import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import Link from "next/link";
-import profileAbout from "../images/profile-about.jpg";
 
 const Home: NextPage = () => {
   return (
@@ -50,7 +49,7 @@ const Home: NextPage = () => {
           <div className="flex items-center justify-center">
             <img
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0"
-              src={profileAbout.src}
+              src=""
               alt="profile"
             />
           </div>

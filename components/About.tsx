@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import profileAbout from "../images/profile-about.jpg";
 
 type Props = {};
 
@@ -21,7 +20,7 @@ function About({}: Props) {
       </h3>
 
       <motion.img
-        src={profileAbout.src}
+        src=""
         initial={{
           x: -200,
           opacity: 0,

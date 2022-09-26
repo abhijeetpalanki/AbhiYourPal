@@ -1,7 +1,6 @@
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundCircles from "./BackgroundCircles";
-import profileHero from "../images/profile-hero.jpg";
 import Link from "next/link";
 
 type Props = {};
@@ -22,7 +21,7 @@ function Hero({}: Props) {
       <BackgroundCircles />
       <img
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
-        src={profileHero.src}
+        src=""
         alt="profile"
       />
       <div className="z-20">

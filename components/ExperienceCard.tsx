@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import tyler from "../images/experience-tyler.png";
 
 type Props = {};
 
@@ -13,7 +12,7 @@ function ExperienceCard({}: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="h-32 w-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
-        src={tyler.src}
+        src=""
         alt="tyler"
       />
 
