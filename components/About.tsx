@@ -39,7 +39,7 @@ function About({ pageInfo }: Props) {
 
       <div className="px-0 space-y-10 md:px-10">
         <h4 className="text-4xl font-semibold">
-          Here's a{" "}
+          {"Here's a "}
           <span className="underline decoration-[#f7ab0a]/50">little</span>{" "}
           background
         </h4>
