@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Project } from "./../typings.d";
 import { urlFor } from "./../sanity";
@@ -54,7 +55,7 @@ function Projects({ projects }: Props) {
 
               <div className="flex items-center justify-center space-x-2">
                 {project?.technologies.map((technology) => (
-                  <img
+                  <Image
                     className="object-contain w-20 h-10"
                     key={technology._id}
                     src={urlFor(technology.image).url()}

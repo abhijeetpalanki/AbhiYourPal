@@ -1,5 +1,6 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import About from "../components/About";
 import ContactMe from "../components/ContactMe";
 import Header from "../components/Header";
@@ -63,7 +64,7 @@ const Home = ({ pageInfo, experiences, skills, projects, socials }: Props) => {
       <Link href="#hero">
         <footer className="sticky w-full cursor-pointer bottom-5">
           <div className="flex items-center justify-center">
-            <img
+            <Image
               className="w-10 h-10 rounded-full filter grayscale hover:grayscale-0"
               src={urlFor(pageInfo.profilePic).url()}
               alt={pageInfo.name}
