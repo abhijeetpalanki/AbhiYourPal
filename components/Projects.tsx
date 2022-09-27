@@ -1,11 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Project } from "./../typings.d";
+import { urlFor } from "./../sanity";
 
-type Props = {};
+type Props = {
+  projects: Project[];
+};
 
-function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
-
+function Projects({ projects }: Props) {
   return (
     <motion.div
       initial={{
@@ -15,15 +17,18 @@ function Projects({}: Props) {
       transition={{
         duration: 1.5,
       }}
-      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
+      className="relative z-0 flex flex-col items-center h-screen max-w-full mx-auto overflow-hidden text-left md:flex-row justify-evenly"
     >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Projects
       </h3>
 
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80">
-        {projects.map((project, i) => (
-          <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+        {projects?.map((project, i) => (
+          <div
+            key={project?._id}
+            className="flex flex-col items-center justify-center flex-shrink-0 w-screen h-screen p-20 space-y-5 snap-center md:p-44"
+          >
             <motion.img
               initial={{
                 y: -300,
@@ -34,22 +39,32 @@ function Projects({}: Props) {
                 duration: 1.2,
               }}
               viewport={{ once: true }}
-              src=""
-              alt="project"
+              src={urlFor(project?.image).url()}
+              alt={project?.title}
+              className="object-contain max-h-[400px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px]"
             />
 
-            <div className="space-y-10 px-0 md:px-10 max-w-6xl">
-              <h4 className=" text-4xl font-semibold text-center">
+            <div className="max-w-6xl px-0 space-y-10 md:px-10">
+              <h4 className="text-4xl font-semibold text-center ">
                 <span className="underline decoration-[#f7ab0a]/50">
-                  Case Study {i + 1} of {projects.length}:
-                </span>
-                Clone
+                  Project {i + 1} of {projects.length}:
+                </span>{" "}
+                {project?.title}
               </h4>
 
+              <div className="flex items-center justify-center space-x-2">
+                {project?.technologies.map((technology) => (
+                  <img
+                    className="object-contain w-20 h-10"
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    alt={technology.title}
+                  />
+                ))}
+              </div>
+
               <p className="text-lg text-center md:text-left">
-                A trivia quiz game using React.js, React-Helmet to make
-                server-side rendering and for creating apps that are social
-                media friendly, Axios, and CSS.
+                {project?.summary}
               </p>
             </div>
           </div>

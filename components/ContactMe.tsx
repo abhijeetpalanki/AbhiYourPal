@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from "../typings";
 
 type Inputs = {
   name: string;
@@ -10,9 +11,9 @@ type Inputs = {
   message: string;
 };
 
-type Props = {};
+type Props = { pageInfo: PageInfo };
 
-function ContactMe({}: Props) {
+function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
     window.location.href = `mailto:ajpalanki@gmail.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
@@ -27,7 +28,7 @@ function ContactMe({}: Props) {
       transition={{
         duration: 1.5,
       }}
-      className="h-screen relative flex flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
+      className="relative flex flex-col items-center h-screen px-10 mx-auto text-center md:text-left md:flex-row max-w-7xl justify-evenly"
     >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Contact
@@ -40,24 +41,24 @@ function ContactMe({}: Props) {
         </h4>
 
         <div className="space-y-10">
-          <div className="flex items-center space-x-5 justify-center">
+          <div className="flex items-center justify-center space-x-5">
             <PhoneIcon className="text-[#f7ab0a] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">+1 (203) 385-2663</p>
+            <p className="text-2xl">{pageInfo?.phoneNumber}</p>
           </div>
 
-          <div className="flex items-center space-x-5 justify-center">
+          <div className="flex items-center justify-center space-x-5">
             <MapPinIcon className="text-[#f7ab0a] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">Bentonville, AR</p>
+            <p className="text-2xl">{pageInfo?.address}</p>
           </div>
 
-          <div className="flex items-center space-x-5 justify-center">
+          <div className="flex items-center justify-center space-x-5">
             <EnvelopeIcon className="text-[#f7ab0a] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">ajpalanki@gmail.com</p>
+            <p className="text-2xl">{pageInfo?.email}</p>
           </div>
         </div>
 
         <form
-          className="flex flex-col space-y-2 w-fit mx-auto"
+          className="flex flex-col mx-auto space-y-2 w-fit"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex space-x-2">

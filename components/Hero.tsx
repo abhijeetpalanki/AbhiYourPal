@@ -2,13 +2,17 @@ import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundCircles from "./BackgroundCircles";
 import Link from "next/link";
+import { PageInfo } from "../typings";
+import { urlFor } from "./../sanity";
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
-function Hero({}: Props) {
-  const [text, count] = useTypewriter({
+function Hero({ pageInfo }: Props) {
+  const [text] = useTypewriter({
     words: [
-      "Hi, The Name's Abhijeet Palanki",
+      `Hi, The Name's ${pageInfo?.name}`,
       "Guy-who-loves-Tea.tsx",
       "<ButLovesToCodeMore />",
     ],
@@ -17,18 +21,18 @@ function Hero({}: Props) {
   });
 
   return (
-    <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
+    <div className="flex flex-col items-center justify-center h-screen space-y-8 overflow-hidden text-center">
       <BackgroundCircles />
       <img
-        className="relative rounded-full h-32 w-32 mx-auto object-cover"
-        src=""
+        className="relative object-cover w-32 h-32 mx-auto rounded-full"
+        src={urlFor(pageInfo?.heroImage).url()}
         alt="profile"
       />
       <div className="z-20">
         <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]">
-          Software Engineer
+          {pageInfo?.role}
         </h2>
-        <h1 className="text-5xl lg:text-6xl font-semibold px-10">
+        <h1 className="px-10 text-5xl font-semibold lg:text-6xl">
           <span className="mr-3">{text}</span>
           <Cursor cursorColor="#f7ab0a" />
         </h1>
